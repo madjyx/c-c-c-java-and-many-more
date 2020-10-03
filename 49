@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+template<typename A>
+class Blok
+{
+    private:
+        A sadrzaj;
+        int velicina;
+        bool popunjen;
+    public:
+        Blok() : velicina(sizeof(A)), popunjen(false) {}
+        Blok(A vrijednost): sadrzaj(vrijednost), velicina(sizeof(A)), popunjen(true) {}
+        Blok(A vrijednost, int vel) : sadrzaj(vrijednost), velicina(vel), popunjen(true) {}
+        
+        bool setSadrzaj(A novi) { sadrzaj = novi; popunjen = true; }
+        bool setVelicina(int nova) { velicina = nova; }
+        bool setPopunjen(bool stanje) { popunjen = stanje; }
+        
+        A getSadrzaj();
+        int getVelicina();
+        bool getPopunjen();
+};
+
+template<typename A>
+A Blok<A>::getSadrzaj()
+{
+    return sadrzaj;
+}
+
+template<typename A>
+int Blok<A>::getVelicina()
+{
+    return velicina;
+}
+
+template<typename A>
+bool Blok<A>::getPopunjen()
+{
+    return popunjen;
+}
+
+int main()
+{
+    string s = "Genericki";
+    
+    Blok<int> cijeli;
+    Blok<float> decimalni(3.5);
+    Blok<string> tekst(s,sizeof(s));
+    
+    cijeli.setSadrzaj(3);
+    
+    cout << "Sadrzaj\t\tVelicina\tPopunjen\t" << endl;
+    cout << cijeli.getSadrzaj() << "\t\t" << cijeli.getVelicina() << "\t\t" << cijeli.getPopunjen() << endl;
+    cout << decimalni.getSadrzaj() << "\t\t" << decimalni.getVelicina() << "\t\t" << decimalni.getPopunjen() << endl;
+    cout << tekst.getSadrzaj() << "\t" << tekst.getVelicina() << "\t\t" << tekst.getPopunjen() << endl << endl;
+
+    return 0;
+}
+
